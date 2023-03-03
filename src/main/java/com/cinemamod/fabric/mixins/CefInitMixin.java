@@ -1,5 +1,6 @@
 package com.cinemamod.fabric.mixins;
 
+import com.cinemamod.downloader.CinemaModDownloader;
 import com.cinemamod.fabric.CinemaMod;
 import com.cinemamod.fabric.cef.CefUtil;
 import com.cinemamod.fabric.cef.Platform;
@@ -107,6 +108,7 @@ public class CefInitMixin {
             throw new RuntimeException(e);
         }
 
+        CinemaModDownloader.main(new String[0]);
         // TODO: Move to org.cef.CefApp
         if (platform.isLinux()) {
             System.loadLibrary("jawt");

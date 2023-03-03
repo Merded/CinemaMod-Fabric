@@ -23,13 +23,13 @@ public class VideoQueueScreen extends Screen {
     public VideoQueueWidget videoQueueWidget;
 
     public VideoQueueScreen() {
-        super(Text.of("Video Queue"));
+        super(Text.of("Очередь видео"));
     }
 
     @Override
     protected void init() {
         videoQueueWidget = new VideoQueueWidget(this, client, this.width, this.height, 68, this.method_31361(), 19);
-        addDrawableChild(new ButtonWidget(method_31362() + 23, method_31359() + 78, 196, 20, Text.of("Video Settings"), button -> {
+        addDrawableChild(new ButtonWidget(method_31362() + 23, method_31359() + 78, 196, 20, Text.of("Настройки видео"), button -> {
             client.setScreen(new VideoSettingsScreen());
         }));
     }
@@ -59,12 +59,12 @@ public class VideoQueueScreen extends Screen {
         for (int k = 0; k < j; ++k)
             this.drawTexture(matrices, i, 72 + 16 * k, 1, 10, 236, 16);
         this.drawTexture(matrices, i, 72 + 16 * j, 1, 27, 236, 8);
-        drawCenteredText(matrices, this.client.textRenderer, Text.of("Video Queue - " + videoQueueWidget.children().size() + " entries"), this.width / 2, 64 - 10, -1);
+        drawCenteredText(matrices, this.client.textRenderer, Text.of("Очередь видео - " + videoQueueWidget.children().size() + " видео"), this.width / 2, 64 - 10, -1);
         if (videoQueueWidget.children().isEmpty()) {
-            drawCenteredText(matrices, this.client.textRenderer, Text.of("No videos queued"), this.width / 2, (56 + this.method_31361()) / 2, -1);
+            drawCenteredText(matrices, this.client.textRenderer, Text.of("Очередь пуста"), this.width / 2, (56 + this.method_31361()) / 2, -1);
         } else {
             if (videoQueueWidget.getScrollAmount() == 0f) {
-                drawCenteredText(matrices, this.client.textRenderer, Text.of("UP NEXT ->"), -158 + this.width / 2, 64 + 12, -1);
+                drawCenteredText(matrices, this.client.textRenderer, Text.of("ДАЛЕЕ ->"), -158 + this.width / 2, 64 + 12, -1);
             }
         }
     }

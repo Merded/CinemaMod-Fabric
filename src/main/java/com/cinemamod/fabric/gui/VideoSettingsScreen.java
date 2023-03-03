@@ -16,12 +16,12 @@ public class VideoSettingsScreen extends Screen {
     private boolean shouldReloadScreen;
 
     public VideoSettingsScreen() {
-        super(Text.of("Video Settings"));
+        super(Text.of("Настройки видео"));
     }
 
     @Override
     protected void init() {
-        addDrawableChild(new SliderWidget(method_31362() + 23, 78, 196, 20, Text.of("Volume"),
+        addDrawableChild(new SliderWidget(method_31362() + 23, 78, 196, 20, Text.of("Громкость"),
                 CinemaModClient.getInstance().getVideoSettings().getVolume()) {
             @Override
             protected void updateMessage() {
@@ -34,7 +34,7 @@ public class VideoSettingsScreen extends Screen {
                 CinemaModClient.getInstance().getVideoSettings().setVolume((float) value);
             }
         });
-        addDrawableChild(new CheckboxWidget(method_31362() + 23, 110, 196, 20, Text.of("Mute video while alt-tabbed"),
+        addDrawableChild(new CheckboxWidget(method_31362() + 23, 110, 196, 20, Text.of("Заглушать видео при Alt-Tab"),
                 CinemaModClient.getInstance().getVideoSettings().isMuteWhenAltTabbed()) {
             @Override
             public void onPress() {
@@ -42,7 +42,7 @@ public class VideoSettingsScreen extends Screen {
                 CinemaModClient.getInstance().getVideoSettings().setMuteWhenAltTabbed(isChecked());
             }
         });
-        addDrawableChild(new CheckboxWidget(method_31362() + 23, 142, 196, 20, Text.of("Hide crosshair while video playing"),
+        addDrawableChild(new CheckboxWidget(method_31362() + 23, 142, 196, 20, Text.of("Скрывать цель когда играет видео"),
                 CinemaModClient.getInstance().getVideoSettings().isHideCrosshair()) {
             @Override
             public void onPress() {
@@ -51,12 +51,12 @@ public class VideoSettingsScreen extends Screen {
             }
         });
         addDrawableChild(new ButtonWidget(method_31362() + 23, 142 + 32, 196, 20,
-                Text.of("Screen resolution: " + CinemaModClient.getInstance().getVideoSettings().getBrowserResolution() + "p"), button -> {
+                Text.of("Разрешение видео: " + CinemaModClient.getInstance().getVideoSettings().getBrowserResolution() + "p"), button -> {
             CinemaModClient.getInstance().getVideoSettings().setNextBrowserResolution();
-            button.setMessage(Text.of("Screen resolution: " + CinemaModClient.getInstance().getVideoSettings().getBrowserResolution() + "p"));
+            button.setMessage(Text.of("Разрешение видео: " + CinemaModClient.getInstance().getVideoSettings().getBrowserResolution() + "p"));
             shouldReloadScreen = true;
         }, (button, matrices, mouseX, mouseY) -> {
-            renderTooltip(matrices, Text.of("A higher resolution may decrease FPS"), mouseX, mouseY);
+            renderTooltip(matrices, Text.of("Слишком большое разрешение может уменьшить FPS"), mouseX, mouseY);
         }));
     }
 
@@ -90,7 +90,7 @@ public class VideoSettingsScreen extends Screen {
     @Override
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
         this.renderBackground(matrices);
-        drawCenteredText(matrices, this.client.textRenderer, Text.of("Video Settings"), this.width / 2, 64 - 10, -1);
+        drawCenteredText(matrices, this.client.textRenderer, Text.of("Настройки видео"), this.width / 2, 64 - 10, -1);
         super.render(matrices, mouseX, mouseY, delta);
     }
 
