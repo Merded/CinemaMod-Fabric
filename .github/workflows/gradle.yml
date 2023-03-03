@@ -1,0 +1,32 @@
+name: Java CI with Gradle
+
+on: ["push", "pull_request"]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'corretto'
+        cache: 'gradle'
+    - name: Build with Gradle
+      uses: gradle/gradle-build-action@v2
+      with:
+        arguments: build
+    - name: Rename cef
+      run: mv build/cef build/cinemamod-libraries
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: cinemamod
+        path: |
+          build/libs/cinemamod*.jar
+          build/cinemamod-libraries
+          !build/*-sources.jar
